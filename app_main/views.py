@@ -106,9 +106,10 @@ def teacher_delete(request, id):
 @login_required(login_url='login')
 def students_list(request, id):
     teacher = get_object_or_404(User, id=id)
-
-    if teacher.id != request.user.id:
+   
+    if teacher.id != request.user.id and request.user != is_superuser:
         return redirect("home")
+
 
     students = teacher.student_set.all()
 

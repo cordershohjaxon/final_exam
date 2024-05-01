@@ -1,9 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1><b>"{{ hobby_name }}"</b> hobbisiga ega bo'lgan studentlar</h1>
+<div class="container mx-auto mt-10">
+    <div class="bg-gray-100 p-5 rounded-lg shadow-md">
+        <h1>
+            <b class="block text-2xl font-bold mb-2">"{{ hobby_name }}"</b> hobbisiga ega bo'lgan studentlar
+        </h1>
 
-{% for student in students %}
-    <p>{{ student }}</p> 
-{% endfor %}
+        <i class="block text-gray-600">
+            Students:
+            {% for student in students %}
+                <a href="{% url 'student_detail' student_id=student.id %}" class="text-blue-500">{{ student }}</a>
+                {% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </i>
+    </div>
+</div>
 {% endblock content %}
+
