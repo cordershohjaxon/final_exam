@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto mt-10">
+    <div class="bg-gray-100 p-5 rounded-lg shadow-md">
+        <b class="block text-2xl font-bold mb-2">Student: {{ student }}</b>
+        <h1 class="text-xl font-semibold text-gray-800 mb-2">Teacher name: {{ teacher }}</h1>
+        <i class="block text-gray-600">
+            Hobbies:
+            {% for hobby in student.hobbies.all %}
+                <span class="text-blue-500">{{ hobby }}</span>
+                {% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </i>
+    </div>
+</div>
+{% endblock content %}
