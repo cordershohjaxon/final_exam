@@ -1,4 +1,4 @@
-from django.forms import ModelForm, TextInput, PasswordInput
+from django.forms import ModelForm, TextInput, PasswordInput, EmailInput
 from django.contrib.auth import get_user_model
 from django import forms
 
@@ -29,7 +29,7 @@ class UserRegistrationForm(ModelForm):
             'username': TextInput(attrs={
                 'class': 'block text-sm font-medium text-gray-700 mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500'
             }),
-            'email': TextInput(attrs={
+            'email': EmailInput(attrs={
                 'class': 'block text-sm font-medium text-gray-700 mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500'
             }),
         }
@@ -37,7 +37,7 @@ class UserRegistrationForm(ModelForm):
 class StudentForm(ModelForm):
     class Meta:
         model = Student
-        fields = ['first_name', 'last_name', 'hobbies']
+        fields = ['first_name', 'last_name']
         widgets = {
             'first_name': forms.TextInput(attrs={
                 'class': 'w-full border rounded border-gray-900 py-2 px-4 outline-0'

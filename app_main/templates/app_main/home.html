@@ -1,14 +1,12 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 <div class="mt-5 flex flex-row items-start gap-5">
-	<img class="max-w-[300px] border-2 border-black rounded" src="{{ request.user.profile_image.url }}" />
+    <img class="w-72 h-auto border-2 border-black rounded-full" src="{{ request.user.profile_image.url }}" alt="Profile Image" />
     <div>
-        <h2 class="text-2xl">Fullname: {{ request.user.first_name }} {{ request.user.last_name }}</h2>
-        <h3 class="text-xl">Email: {{ request.user.email }}</h3>
-        {% if request.user.is_superuser %}
-        <h3 class="text-xl">Status: ⭐️⭐️⭐️ Superuser</h3>
-        {% else %}
-        <h3 class="text-xl">Status: ⭐️⭐️ Teacher</h3>
-        {% endif %}
+        <h2 class="text-2xl font-bold text-gray-800">{{ request.user.get_full_name }}</h2>
+        <h3 class="text-xl text-gray-600">Email: {{ request.user.email }}</h3>
+        <h3 class="text-xl text-gray-600">Status: {% if request.user.is_superuser %}⭐️⭐️⭐️ Superuser{% else %}⭐️⭐️ Teacher{% endif %}</h3>
     </div>
 </div>
 {% endblock content %}

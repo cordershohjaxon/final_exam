@@ -1,4 +1,4 @@
-from django.forms import Form, ModelForm, CharField, PasswordInput, TextInput
+from django.forms import Form, ModelForm, CharField, PasswordInput, TextInput, EmailInput
 from django.contrib.auth import get_user_model
 from django.db import models
 
@@ -22,7 +22,7 @@ class UserForm(ModelForm):
             'username': TextInput(attrs={
                 'class': 'block text-sm font-medium text-gray-700 mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500'
             }),
-            'email': TextInput(attrs={
+            'email': EmailInput(attrs={
                 'class': 'block text-sm font-medium text-gray-700 mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500'
             }),
         }
