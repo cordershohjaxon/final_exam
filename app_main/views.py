@@ -122,31 +122,23 @@ def students_list(request, id):
 
 @login_required(login_url='login')
 def student_create(request, teacher_id):
-
     if request.method == 'POST':
         teacher = get_object_or_404(User, id=teacher_id)
         form = StudentForm(request.POST)
-        hobbies_list = request.POST.get('hobbies')  # ['1', '3', '5']
-  
+
         if form.is_valid():
             student = form.save(commit=False)
             student.teacher = teacher
-
-            for hobby_id in hobbies_list:
-                hobby = Hobby.objects.get(id=hobby_id)
-                # print(hobby)
-                # student.hobbies.add(int(hobby_id))
-                # student.save()
-
-
+            student.save()
             return redirect('teacher_students', id=teacher_id)
 
-
     form = StudentForm()
+    form.fields.pop('hobbies')
     context = {
         'form': form,
         'btn_text': 'Create student',
-        'btn_color': 'green-600'
+        'btn_color': 'green-600',
+        'title': 'New student',
     }
     return render(request, 'app_main/student_form.html', context)
 
@@ -169,7 +161,8 @@ def student_update(request, student_id):
     context = {
         'form': form,
         'btn_text': 'Update student',
-        'btn_color': 'yellow-600'
+        'btn_color': 'yellow-600',
+        'title': 'Update Student'
     }
     return render(request, 'app_main/student_form.html', context)
 

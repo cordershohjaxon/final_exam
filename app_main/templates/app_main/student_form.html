@@ -4,7 +4,7 @@
 <div class="flex justify-center items-center h-screen">
     <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-xs" action="" method="post">
         {% csrf_token %}
-
+        <span class="text-3xl text-center mb-5">{{ title }}</span>
         {% for field in form %}
             <div class="mb-4">
                 <label for="{{ field.id }}" class="block text-gray-700 text-sm font-bold mb-2">{{ field.label }}</label>

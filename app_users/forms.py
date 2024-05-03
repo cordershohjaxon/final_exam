@@ -37,15 +37,12 @@ class UserRegistrationForm(ModelForm):
 class StudentForm(ModelForm):
     class Meta:
         model = Student
-        fields = ['first_name', 'last_name']
+        fields = ['first_name', 'last_name','hobbies']
         widgets = {
             'first_name': forms.TextInput(attrs={
                 'class': 'w-full border rounded border-gray-900 py-2 px-4 outline-0'
             }),
             'last_name': forms.TextInput(attrs={
                 'class': 'w-full border rounded border-gray-900 py-2 px-4 outline-0'
-            }),
-            # 'hobbies': forms.Sele(attrs={
-            #     'class': 'w-full border rounded border-gray-900 py-2 px-4 outline-0'
-            # }),
+            })
         }
