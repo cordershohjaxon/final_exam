@@ -107,7 +107,7 @@ def teacher_delete(request, id):
 def students_list(request, id):
     teacher = get_object_or_404(User, id=id)
    
-    if not teacher.id != request.user.id and not request.user.is_superuser:
+    if teacher.id != request.user.id and (not request.user.is_superuser):
         return redirect("home")
 
 
