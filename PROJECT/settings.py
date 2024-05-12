@@ -17,6 +17,7 @@ INSTALLED_APPS = [
 
     'app_main.apps.AppMainConfig',
     'app_users.apps.AppUsersConfig',
+    'app_note.apps.AppNoteConfig',
 ]
 
 MIDDLEWARE = [

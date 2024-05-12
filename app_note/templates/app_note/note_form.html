@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mx-auto mt-8">
+    <h1 class="text-3xl font-semibold text-gray-800">{{ note.title }}</h1>
+    <p class="text-lg text-gray-600 mt-4">{{ note.description }}</p>
+    <a href="{% url 'note_update' note_id=note.id %}" class="inline-block mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Update</a>
+    <br>
+</div>
+<br>
+{% endblock content %}

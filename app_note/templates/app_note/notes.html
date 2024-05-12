@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mx-auto mt-8">
+    <h1 class="text-2xl font-semibold text-gray-800 mb-4">{{ owner }} ning maqolalari</h1>
+    <a href="{% url 'note_create' owner_id=request.user.id %}" class="text-green-500 mb-4 inline-block">Yangi Maqola yaratish</a>
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white shadow-md rounded my-4">
+            <thead>
+                <tr>
+                    <th class="px-4 py-2 bg-gray-100 text-gray-600 border-b">Maqola</th>
+                    <th class="px-4 py-2 bg-gray-100 text-gray-600 border-b">Harakatlar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for note in notes %}
+                <tr>
+                    <td class="px-4 py-2 border-b">
+                        <a href="{% url 'note_form' note_id=note.id %}" class="text-blue-500">{{ note }}</a>
+                    </td>
+                    <td class="px-4 py-2 border-b">
+                        <a href="{% url 'note_delete' note_id=note.id %}" class="text-red-500">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}
