@@ -43,11 +43,11 @@ def user_registration(request):
 
 def login_user(request):
     if request.method == 'POST':
-        email = request.POST.get('email')
+        username = request.POST.get('username')
         password = request.POST.get('password')
 
         try:
-            user = User.objects.get(email=email)
+            user = User.objects.get(username=username)
             user_exists = user.check_password(password)
         except:
             user_exists = None

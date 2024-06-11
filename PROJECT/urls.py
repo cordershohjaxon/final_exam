@@ -9,7 +9,8 @@ urlpatterns = [
 
     path('', include('app_main.urls')),
     path('users/', include('app_users.urls')),
-    path('note/', include('app_note.urls')),
+    path('kirim/', include('app_kirim.urls')),
+    path('chiqim/', include('app_chiqim.urls')),
 ]
 
 if settings.DEBUG:

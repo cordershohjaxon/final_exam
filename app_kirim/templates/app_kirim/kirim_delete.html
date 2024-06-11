@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mx-auto">
+  <div class="max-w-md mx-auto bg-white rounded-lg overflow-hidden shadow-md p-6 mt-6">
+    <h2 class="text-2xl font-bold mb-4">Kirim ma'lumotini o'chirish</h2>
+    <p class="mb-4">Siz ushbu "{{ kirim }}" ma'lumotlarini o'chirishni hohlaysizmi?</p>
+    <form method="post" class="mb-4">
+      {% csrf_token %}
+      <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded inline-block">O'chirish</button>
+      <a href="{% url 'kirim_page' %}" class="text-blue-500 hover:text-blue-700">Bekor qilish</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

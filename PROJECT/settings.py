@@ -17,7 +17,8 @@ INSTALLED_APPS = [
 
     'app_main.apps.AppMainConfig',
     'app_users.apps.AppUsersConfig',
-    'app_note.apps.AppNoteConfig',
+    'app_kirim.apps.AppKirimConfig',
+    'app_chiqim.apps.AppChiqimConfig',
 ]
 
 MIDDLEWARE = [
@@ -88,7 +89,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
 

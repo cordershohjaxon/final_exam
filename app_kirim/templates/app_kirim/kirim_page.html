@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br>
+  <div class="container mx-auto bg-white">
+    <div class="max-w-md mx-auto bg-green-100 rounded-lg overflow-hidden shadow-lg">
+      <div class="px-6 py-4">
+        <h2 class="text-3xl font-extrabold mb-4 text-green-800">Kirimlar</h2>
+        <a href="{% url 'kirim_create'  %}" class="bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded inline-block mb-4 transition duration-300 ease-in-out transform hover:scale-105">Yangi kirim qo'shish</a>
+        {% if kirimlar %}
+          <ul>
+            {% for kirim in kirimlar %}
+              <li class="p-4 mb-2 bg-green-200 border-b border-green-300 pb-2 rounded-lg shadow">
+                <span class="block font-bold text-green-700">{{ kirim.summa }} UZS</span>
+                <span class="block text-sm text-green-600">
+                  <b>{{ kirim.qayerdan }}</b> - {{ kirim.tolov_turi }} - {{ kirim.ish_haqqi_turi }}<br>
+                  <i>{{ kirim.sana }}</i>
+                </span>
+                {% if request.user.is_superuser %}
+                  <a href="{% url 'kirim_update' pk=kirim.id %}" class="text-blue-500 hover:text-blue-700 mr-2 transition duration-300 ease-in-out transform hover:scale-105">Yangilash</a>
+                  <a href="{% url 'kirim_delete' pk=kirim.id %}" class="text-red-500 hover:text-red-700 transition duration-300 ease-in-out transform hover:scale-105">O'chirish</a>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="text-green-700 font-semibold">Hozircha sizda kirim ma'lumotlari yo'q.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+<br>
+{% endblock %}

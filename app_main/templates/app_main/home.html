@@ -1,14 +1,41 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="mt-5 flex flex-row items-start gap-5">
-    <img class="w-72 h-auto border-2 border-black rounded-full" src="{{ request.user.profile_image.url }}" alt="Profile Image" />
-    <div>
-        <h2 class="text-2xl font-bold text-gray-800">{{ request.user.get_full_name }}</h2>
-        <h3 class="text-xl text-gray-600">Email: {{ request.user.email }}</h3>
-        <h3 class="text-xl text-gray-600">Status: {% if request.user.is_superuser %}⭐️⭐️⭐️ Superuser{% else %}⭐️⭐️ User{% endif %}</h3>
+<div class="container mx-auto mt-10 p-5 bg-white shadow-lg rounded-lg">
+    <div class="flex flex-col md:flex-row items-start md:items-center gap-5">
+        <img class="w-32 h-32 md:w-48 md:h-48 border-2 border-gray-300 rounded-full object-cover" src="{{ request.user.profile_image.url }}" alt="Profile Image" />
+        <div>
+            <h2 class="text-2xl font-bold text-gray-800">{{ request.user.get_full_name }}</h2>
+            <h3 class="text-lg text-gray-600 mt-2">Email: <span class="text-gray-800">{{ request.user.email }}</span></h3>
+            <h3 class="text-lg text-gray-600 mt-1">
+                Status:
+                <span class="font-semibold {% if request.user.is_superuser %}text-yellow-500{% else %}text-blue-500{% endif %}">
+                    {% if request.user.is_superuser %}⭐️⭐️⭐️ Superuser{% else %}⭐️⭐️ User{% endif %}
+                </span>
+            </h3>
+        </div>
+    </div>
+    <div class="mt-10">
+        {% if royxat %}
+            <ul class="space-y-4">
+                {% for item in royxat %}
+                    <li class="p-4 border border-gray-300 rounded-lg shadow-sm
+                        {% if item.status == 'kirim' %}bg-green-100{% elif item.status == 'chiqim' %}bg-red-100{% endif %}">
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold {% if item.status == 'kirim' %}text-green-600{% elif item.status == 'chiqim' %}text-red-600{% endif %}">{{ item.summa }} UZS</span>
+                            <span class="text-sm text-gray-500 italic">{{ item.sana }}</span>
+                        </div>
+                        <p class="text-sm text-gray-500 italic flex justify-between items-center">{{ item.status }}</p>
+                        <div class="text-sm text-gray-700 mt-1">
+                            <b>{{ item.qayerga }}</b> <b>{{ item.qayerdan }}</b> - {{ item.tolov_turi }}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-gray-600 flex justify-between items-center">Hozircha sizda kirim-chiqim ma'lumotlari yo'q !!! </p>
+        {% endif %}
     </div>
 </div>
 <br>
-
-{% endblock content %}
+{% endblock %}
