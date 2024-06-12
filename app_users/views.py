@@ -8,7 +8,20 @@ User = get_user_model()
 
 
 def user_registration(request):
+    """
+    Handles user registration by creating a new user if the provided data is valid.
 
+    This view handles the user registration process. If the request method is POST,
+    it retrieves the form data, checks if the passwords match, and if the email is
+    not already registered. If the validation passes, a new user is created and redirected
+    to the login page.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response object with the rendered template or a redirect to the login page.
+    """
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
@@ -33,7 +46,6 @@ def user_registration(request):
             user.save()
             return redirect('login')
 
-
     form = UserRegistrationForm()
     context = {
         'form': form
@@ -42,6 +54,20 @@ def user_registration(request):
 
 
 def login_user(request):
+    """
+    Handles user login by authenticating and logging in the user.
+
+    This view handles the user login process. If the request method is POST, it
+    retrieves the username and password, checks if the user exists and the password
+    is correct, and logs in the user if the validation passes. It then redirects the
+    user to the home page.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response object with the rendered template or a redirect to the home page.
+    """
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -60,5 +86,17 @@ def login_user(request):
 
 
 def logout_user(request):
+    """
+    Logs out the current user and redirects to the login page.
+
+    This view handles the user logout process. It logs out the currently logged-in
+    user and redirects them to the login page.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: A redirect to the login page.
+    """
     logout(request)
     return redirect('login')
