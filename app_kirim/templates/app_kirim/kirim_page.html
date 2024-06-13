@@ -16,10 +16,8 @@
                   <b>{{ kirim.qayerdan }}</b> - {{ kirim.tolov_turi }} - {{ kirim.ish_haqqi_turi }}<br>
                   <i>{{ kirim.sana }}</i>
                 </span>
-                {% if request.user.is_superuser %}
                   <a href="{% url 'kirim_update' pk=kirim.id %}" class="text-blue-500 hover:text-blue-700 mr-2 transition duration-300 ease-in-out transform hover:scale-105">Yangilash</a>
                   <a href="{% url 'kirim_delete' pk=kirim.id %}" class="text-red-500 hover:text-red-700 transition duration-300 ease-in-out transform hover:scale-105">O'chirish</a>
-                {% endif %}
               </li>
             {% endfor %}
           </ul>

@@ -12,12 +12,10 @@
             <span class="block font-bold text-lg text-red-800">{{ chiqim.summa }} UZS</span>
             <span class="block text-red-700">{{ chiqim.qayerga }} - {{ chiqim.chiqim_turi }}</span>
             <span class="block text-sm text-red-600"><i>{{ chiqim.sana }}</i></span>
-            {% if request.user.is_superuser %}
             <div class="mt-2">
               <a href="{% url 'chiqim_update' pk=chiqim.id %}" class="text-blue-500 hover:text-blue-700 mr-4">Yangilash</a>
               <a href="{% url 'chiqim_delete' pk=chiqim.id %}" class="text-red-500 hover:text-red-700">O'chirish</a>
             </div>
-            {% endif %}
           </li>
         {% endfor %}
       </ul>
